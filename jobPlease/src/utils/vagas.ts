@@ -1,0 +1,51 @@
+export const vagas = [
+    {
+        id: 1,
+        titulo: 'Desenvolvedor Front-end',
+        empresa: 'Google',
+        remuneracao: 2000,
+        destaque: true,
+    },
+    {
+        id: 2,
+        titulo: 'Desenvolvedor Back-end',
+        empresa: 'Facebook',
+        remuneracao: 3000,
+        destaque: false,
+    },
+    {
+        id: 3,
+        titulo: 'Desenvolvedor Fullstack',
+        empresa: 'Amazon',
+        remuneracao: 4000,
+        destaque: true,
+    },
+    {
+        id: 4,
+        titulo: 'Desenvolvedor Mobile',
+        empresa: 'Apple',
+        remuneracao: 5000,
+        destaque: true,
+    },
+    {
+        id: 5,
+        titulo: 'Desenvolvedor Python',
+        empresa: 'Amazon',
+        remuneracao: 3000,
+        destaque: true,
+    },
+    {
+        id: 6,
+        titulo: 'Desenvolvedor Java',
+        empresa: 'Google',
+        remuneracao: 2000,
+        destaque: false,
+    },
+    {
+        id: 7,
+        titulo: 'Desenvolvedor C#',
+        empresa: 'Microsoft',
+        remuneracao: 4000,
+        destaque: false,
+    },
+]
