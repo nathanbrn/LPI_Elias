@@ -40,6 +40,7 @@ export const ButtonOpenVagancy = styled.a`
     font-size: 0.8rem;
 
     background-color: #B22222;
+    color: #fff;
 
     border: none;
 

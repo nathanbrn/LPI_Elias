@@ -8,6 +8,7 @@ export const Container = styled.main`
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    background-color: #000;
 `;
 
 export const ContainerText = styled.div`
@@ -15,6 +16,8 @@ export const ContainerText = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
+    background-color: #000;
+
 `;
 
 export const ContainerInput = styled.div`
@@ -22,6 +25,8 @@ export const ContainerInput = styled.div`
     display: flex;
     gap: 8px;
     justify-content: center;
+    background-color: #000;
+
 `;
 
 export const Input = styled.input`
@@ -36,6 +41,7 @@ export const Button = styled.button`
     padding: 0.5rem 3rem;
 
     background-color: #B22222;
+    color: #fff;
 
     border: none;
 
@@ -50,8 +56,14 @@ export const Button = styled.button`
 
 export const Title = styled.h2`
     font-size: 2rem;
+
+    background-color: #000;
+    color: #fff;
 `;
 
 export const Text = styled.p`
     font-size: 0.8rem;
+    
+    background-color: #000;
+    color: #fff;
 `;

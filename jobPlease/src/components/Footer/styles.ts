@@ -22,6 +22,7 @@ export const ContainerVaga = styled.div`
         background-color: #fff;
     }
     &::-webkit-scrollbar-thumb {
+        width: 0.3rem;
         background-color: #FFD700;    /* color of the scroll thumb */
         border-radius: 20px;       /* roundness of the scroll thumb */
         border: 3px solid orange;
