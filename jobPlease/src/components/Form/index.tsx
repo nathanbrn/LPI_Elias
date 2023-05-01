@@ -24,6 +24,26 @@ export function Form() {
 				<Span>O título é o mais importante, seja claro e objetivo.</Span>
 			</ContainerInput>
 			<ContainerInput>
+				<Label htmlFor='senioridade'>Senioridade</Label>
+				<select name="senioridade" id="senioridade">
+					<option value="Estagiário">Estagiário</option>
+					<option value="Júnior">Júnior</option>
+					<option value="Pleno">Pleno</option>
+					<option value="Sênior">Sênior</option>
+				</select>
+			</ContainerInput>
+			<ContainerInput>
+				<Label htmlFor='tipo'>Tipo</Label>
+				<select name="tipo" id="tipo">
+					<option value="Tempo Integral">Tempo Integral</option>
+					<option value="Meio periodo">Meio periodo</option>
+				</select>
+			</ContainerInput>
+			<ContainerInput>
+				<Label htmlFor='localizacao'>Localização:</Label>
+				<Input placeholder='Digite a localização' type='text' id='localizacao' />
+			</ContainerInput>
+			<ContainerInput>
 				<Label htmlFor=''>Descrição da vaga:</Label>
 				<TextArea
 					placeholder='Descreva as atividades do desenvolvedor'

@@ -65,6 +65,7 @@ export function Vagas() {
 										<h2>{vaga.titulo}</h2>
 										<p>{vaga.empresa}</p>
 										<p>{vaga.location}</p>
+										<p>{vaga.senioridade}</p>
 									</div>
 								</ContainerHeader>
 								<ContainerRemuneration>
@@ -102,6 +103,7 @@ export function Vagas() {
 										<div>
 											<span>R$ {vaga.remuneracao},00</span>
 											<span>{vaga.location}</span>
+											<span>{vaga.senioridade}</span>
 										</div>
 										<button>Candidatar-se a vaga</button>
 									</ContainerTitleVaga>
