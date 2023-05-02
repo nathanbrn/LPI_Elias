@@ -18,7 +18,7 @@ export function Main() {
 					home-office
 				</Text>
 			</ContainerText>
-			<ContainerInput>
+			{/* <ContainerInput>
 				<Input
 					placeholder='Digite a vaga que está buscando'
 					type='text'
@@ -26,7 +26,7 @@ export function Main() {
 					id='search'
 				/>
 				<Button>Procurar</Button>
-			</ContainerInput>
+			</ContainerInput> */}
 		</Container>
 	);
 }

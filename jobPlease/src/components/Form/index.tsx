@@ -14,6 +14,7 @@ import { api } from '../../utils/api';
 import { VagaProps } from '../../types/vaga';
 
 import { useState } from 'react';
+import { render } from 'react-dom';
 
 export function Form() {
 	const id = Math.random() * 1000;
@@ -29,6 +30,7 @@ export function Form() {
 	const [requisitos, setRequisitos] = useState('');
 	const [diferencial, setDiferencial] = useState('');
 	const [beneficios, setBeneficios] = useState('');
+	const [link, setLink] = useState('');
 
 	const vaga: VagaProps = {
 		id,
@@ -43,6 +45,7 @@ export function Form() {
 		requisitos: requisitos,
 		diferencial: diferencial,
 		beneficios: beneficios,
+		link: link,
 		destaque,
 	};
 
@@ -66,7 +69,9 @@ export function Form() {
 				</Title>
 			</ContainerInput>
 			<ContainerInput>
-				<Label htmlFor='title'>Título da vaga:</Label>
+				<Label className='required' htmlFor='title'>
+					Título da vaga
+				</Label>
 				<Input
 					value={titulo}
 					onChange={e => setTitulo(e.target.value)}
@@ -77,7 +82,9 @@ export function Form() {
 				<Span>O título é o mais importante, seja claro e objetivo.</Span>
 			</ContainerInput>
 			<ContainerInput>
-				<Label htmlFor='senioridade'>Senioridade</Label>
+				<Label className='required' htmlFor='senioridade'>
+					Senioridade
+				</Label>
 				<InputCheck
 					value={senioridade}
 					onChange={e => setSenioridade(e.target.value)}
@@ -101,7 +108,9 @@ export function Form() {
 				</InputCheck>
 			</ContainerInput>
 			<ContainerInput>
-				<Label htmlFor='localizacao'>Localização:</Label>
+				<Label className='required' htmlFor='localizacao'>
+					Localização
+				</Label>
 				<Input
 					value={location}
 					onChange={e => setLocation(e.target.value)}
@@ -120,7 +129,9 @@ export function Form() {
 				/>
 			</ContainerInput>
 			<ContainerInput>
-				<Label htmlFor='empresa'>Empresa contratante:</Label>
+				<Label className='required' htmlFor='empresa'>
+					Empresa contratante
+				</Label>
 				<Input
 					value={empresa}
 					onChange={e => setEmpresa(e.target.value)}
@@ -130,7 +141,9 @@ export function Form() {
 				/>
 			</ContainerInput>
 			<ContainerInput>
-				<Label htmlFor='salario'>Salário oferecido:</Label>
+				<Label className='required' htmlFor='salario'>
+					Salário oferecido
+				</Label>
 				<Input
 					value={remuneracao}
 					onChange={e => setRemuneracao(e.target.value)}
@@ -140,7 +153,7 @@ export function Form() {
 				/>
 			</ContainerInput>
 			<ContainerInput>
-				<Label htmlFor='horas'>Horário:</Label>
+				<Label htmlFor='horas'>Horário</Label>
 				<Input
 					value={hour}
 					onChange={e => setHour(e.target.value)}
@@ -150,7 +163,9 @@ export function Form() {
 				/>
 			</ContainerInput>
 			<ContainerInput>
-				<Label htmlFor='requisitos'>Requisitos:</Label>
+				<Label className='required' htmlFor='requisitos'>
+					Requisitos
+				</Label>
 				<Input
 					value={requisitos}
 					onChange={e => setRequisitos(e.target.value)}
@@ -160,7 +175,7 @@ export function Form() {
 				/>
 			</ContainerInput>
 			<ContainerInput>
-				<Label htmlFor='diferencial'>Diferencial:</Label>
+				<Label htmlFor='diferencial'>Diferencial</Label>
 				<Input
 					value={diferencial}
 					onChange={e => setDiferencial(e.target.value)}
@@ -170,7 +185,9 @@ export function Form() {
 				/>
 			</ContainerInput>
 			<ContainerInput>
-				<Label htmlFor='beneficios'>Beneficios:</Label>
+				<Label className='required' htmlFor='beneficios'>
+					Beneficios
+				</Label>
 				<Input
 					value={beneficios}
 					onChange={e => setBeneficios(e.target.value)}
@@ -179,13 +196,53 @@ export function Form() {
 					id='beneficios'
 				/>
 			</ContainerInput>
+			<ContainerInput>
+				<Label className='required' htmlFor='beneficios'>
+					Link
+				</Label>
+				<Input
+					value={link}
+					onChange={e => setLink(e.target.value)}
+					placeholder='Digite o link da vaga'
+					type='text'
+					id='beneficios'
+				/>
+			</ContainerInput>
 			<Button
 				onClick={() => {
-					handleCreateNewVaga();
-					window.location.reload();
+					try {
+						if (
+							titulo === '' ||
+							senioridade === '' ||
+							link === '' ||
+							requisitos === '' ||
+							beneficios === '' ||
+							remuneracao === '' ||
+							location === '' ||
+							empresa === ''
+						) {
+							throw new Error('Preencha todos os campos');
+						}
+						handleCreateNewVaga();
+						window.location.reload();
+					} catch (err) {
+						render(
+							<p
+								style={{
+									color: '#ff0000',
+									marginTop: '4px',
+									fontSize: '.8rem',
+								}}>
+								Erro ao cadastrar usuário, preencha todos os campos
+								obrigatórios.
+							</p>,
+							document.getElementById('textError')
+						);
+					}
 				}}>
 				Enviar
 			</Button>
+			<div id='textError'></div>
 		</ContainerForm>
 	);
 }

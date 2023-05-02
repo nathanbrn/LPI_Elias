@@ -13,6 +13,15 @@ export const ContainerForm = styled.div`
 	border-radius: 8px;
 
 	background-color: #fff;
+
+	.required:after {
+		content: ' *';
+		color: red;
+	}
+
+	@media screen and (max-width: 768px) {
+		width: 100%;
+	}
 `;
 
 export const ContainerInput = styled.div`
@@ -38,7 +47,7 @@ export const Label = styled.label`
 
 export const Title = styled.h2`
 	font-weight: 800;
-	font-size: 1.2rem;
+	font-size: 1rem;
 
 	margin-bottom: 12px;
 

@@ -7,7 +7,11 @@ import {
 	Title,
 } from './styles';
 
-export function Header() {
+interface HeaderProps {
+	children?: React.ReactNode;
+}
+
+export function Header({ children }: HeaderProps) {
 	const navigate = useNavigate();
 
 	function handleNavigateToHome() {
@@ -17,6 +21,7 @@ export function Header() {
 	return (
 		<Container>
 			<Title onClick={handleNavigateToHome}>Job, Please!</Title>
+			{children ? children : null}
 			<ContainerButton>
 				<ButtonViewVagancy href='/vagas'>Ver vagas</ButtonViewVagancy>
 				<ButtonOpenVagancy href='/criar'>Abrir vaga</ButtonOpenVagancy>

@@ -12,6 +12,7 @@ export interface VagaProps {
 	requisitos: string;
 	diferencial: string;
 	beneficios: string;
+	link: string;
 
 	destaque?: boolean;
 }

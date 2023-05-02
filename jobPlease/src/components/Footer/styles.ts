@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.footer`
 	width: 100%;
-	height: 29.5vh;
+	height: 49.5vh;
 
 	display: flex;
 	flex-direction: column;
@@ -99,10 +99,17 @@ export const ContainerInfo = styled.div`
 	gap: 8px;
 	align-items: center;
 
+	max-width: 250px;
+	min-width: 250px;
+
 	div {
 		span {
 			font-size: 0.8rem;
 		}
+	}
+
+	h3 {
+		font-size: 1rem;
 	}
 `;
 

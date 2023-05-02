@@ -12,38 +12,31 @@ import {
 
 import ReactLoading from 'react-loading';
 
+import emptyList from '../../assets/emptyList.png';
 import LogoEnterprice from '../../assets/LogoEnterprice.jpg';
-import { useEffect, useState } from 'react';
-import { api } from '../../utils/api';
+
 import { VagaProps } from '../../types/vaga';
+import { useNavigate } from 'react-router-dom';
 
-export function Footer() {
-	const [vagasApi, setVagasApi] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
+interface FooterProps {
+	isLoading: boolean;
+	vagasApi: VagaProps[];
+}
 
-	useEffect(() => {
-		api
-			.get('/destaques')
-			.then(({ data }) => {
-				setTimeout(() => {
-					setVagasApi(data);
-					setIsLoading(false);
-				}, 3000);
-			})
-			.catch(err => {
-				console.log(err);
-			});
-	}, []);
+export function Footer({ isLoading, vagasApi }: FooterProps) {
+	const navigate = useNavigate();
 
 	return (
 		<Container>
 			<Title>Veja nossas vagas em destaque</Title>
-			<ContainerVaga>
+			<ContainerVaga id='vagasDestaque'>
 				{isLoading ? (
-					<ReactLoading type='bubbles' color='#f0e68c' />
+					<ReactLoading type='bubbles' color='#f0e68c' height={50} width={50} />
+				) : vagasApi.length === 0 ? (
+					<img width={200} src={emptyList} />
 				) : (
 					vagasApi.map((vaga: VagaProps) => (
-						<ContainerVagancy>
+						<ContainerVagancy key={vaga.id}>
 							<Modal>
 								<ContainerInfo>
 									<div>
@@ -52,14 +45,14 @@ export function Footer() {
 									<div>
 										<span>{vaga.empresa}</span>
 										<h3>{vaga.titulo}</h3>
-										<span>R${vaga.remuneracao}</span>
+										<span>R$ {vaga.remuneracao}</span>
 									</div>
 								</ContainerInfo>
 								<ContainerNew>
 									<span>Nova</span>
 								</ContainerNew>
 								<div>
-									<Button>Ver vaga</Button>
+									<Button onClick={() => navigate('/vagas')}>Ver vagas</Button>
 								</div>
 							</Modal>
 						</ContainerVagancy>
