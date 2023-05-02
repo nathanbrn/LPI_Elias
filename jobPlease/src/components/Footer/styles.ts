@@ -1,122 +1,115 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.footer`
-    width: 100%;
-    height: 29.5vh;
+	width: 100%;
+	height: 29.5vh;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
-    background-color: #fff;
+	background-color: #fff;
 `;
 
 export const ContainerVaga = styled.div`
-    overflow-y: scroll;
-    background-color: #fff;
+	overflow-y: scroll;
+	background-color: #fff;
 
-    &::-webkit-scrollbar {
-        width: 0.5rem;
-    }
-    &::-webkit-scrollbar-track {
-        background-color: #fff;
-    }
-    &::-webkit-scrollbar-thumb {
-        width: 0.3rem;
-        background-color: #FFD700;    /* color of the scroll thumb */
-        border-radius: 20px;       /* roundness of the scroll thumb */
-        border: 3px solid orange;
-    }
+	border-radius: 8px;
 
+	&::-webkit-scrollbar {
+		/* width: 0.5rem; */
+		display: none;
+	}
 `;
 
 export const ContainerVagancy = styled.div`
-    background-color: #fff;
+	background-color: #fff;
 
-    width: 25rem;
+	width: 25rem;
 `;
 
 export const Title = styled.h1`
-    font-size: 1.5rem;
+	font-size: 1.5rem;
 
-    background-color: #fff;
-    color: #000;
+	background-color: #fff;
+	color: #000;
 
-    margin: 8px 0;
+	margin: 8px 0;
 `;
 
 export const Modal = styled.div`
-    width: 100%;
-    margin-bottom: 8px;
+	width: 100%;
+	margin-bottom: 8px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
-    background-color: #F0E68C;
+	background-color: #f0e68c;
 
-    padding: 0.5rem 0.5rem;
-    
-    * {
-        background-color: #F0E68C;
-        color: #000;
-    }
+	padding: 0.5rem 0.5rem;
+
+	* {
+		background-color: #f0e68c;
+		color: #000;
+	}
 `;
 
 export const Button = styled.button`
-    background-color: #B22222;
-    color: #fff;
+	background-color: #b22222;
+	color: #fff;
 
-    border: none;
+	border: none;
 
-    cursor: pointer;
+	cursor: pointer;
 
-    padding: 0.5rem 0.5rem;
+	padding: 0.5rem 0.5rem;
 
-    transition: all .2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 
-    &:hover {
-        background-color: #FF0000;
-    }
+	&:hover {
+		background-color: #ff0000;
+	}
 `;
 
 export const ContainerNew = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-    padding: 0.2rem 0.3rem;
+	padding: 0.2rem 0.3rem;
 
-    font-weight: bold;
+	font-weight: bold;
 
-    background-color: #FFD700;
+	background-color: #ffd700;
 
-    * {
-        background-color: #FFD700;
-        cursor: default;
-    }
+	* {
+		background-color: #ffd700;
+		cursor: default;
+	}
 
-    span {
-        font-size: 0.8rem;
-    }
+	span {
+		font-size: 0.8rem;
+	}
 `;
 
 export const ContainerInfo = styled.div`
-    display: flex;
-    gap: 8px;
-    align-items: center;
+	display: flex;
+	gap: 8px;
+	align-items: center;
 
-    div {
-        span {
-            font-size: 0.8rem;
-        }
-    }
+	div {
+		span {
+			font-size: 0.8rem;
+		}
+	}
 `;
 
 export const Image = styled.img`
-    width: 50px;
-    height: 50px;
+	width: 50px;
+	height: 50px;
 
-    border: 1px solid;
-    border-radius: 50%;
+	border: 1px solid;
+	border-radius: 50%;
 `;

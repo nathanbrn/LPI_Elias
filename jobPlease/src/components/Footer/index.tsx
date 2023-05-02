@@ -10,60 +10,62 @@ import {
 	Title,
 } from './styles';
 
-import { vagas } from '../../utils/vagas';
+import ReactLoading from 'react-loading';
 
 import LogoEnterprice from '../../assets/LogoEnterprice.jpg';
+import { useEffect, useState } from 'react';
+import { api } from '../../utils/api';
+import { VagaProps } from '../../types/vaga';
 
 export function Footer() {
-	const filterVagas = vagas.filter(vaga => vaga.destaque === true);
+	const [vagasApi, setVagasApi] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
+
+	useEffect(() => {
+		api
+			.get('/destaques')
+			.then(({ data }) => {
+				setTimeout(() => {
+					setVagasApi(data);
+					setIsLoading(false);
+				}, 3000);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}, []);
 
 	return (
 		<Container>
 			<Title>Veja nossas vagas em destaque</Title>
 			<ContainerVaga>
-				{filterVagas.map(vaga => (
-					<ContainerVagancy>
-						<Modal>
-							<ContainerInfo>
+				{isLoading ? (
+					<ReactLoading type='bubbles' color='#f0e68c' />
+				) : (
+					vagasApi.map((vaga: VagaProps) => (
+						<ContainerVagancy>
+							<Modal>
+								<ContainerInfo>
+									<div>
+										<Image src={LogoEnterprice} alt='Imagem' />
+									</div>
+									<div>
+										<span>{vaga.empresa}</span>
+										<h3>{vaga.titulo}</h3>
+										<span>R${vaga.remuneracao}</span>
+									</div>
+								</ContainerInfo>
+								<ContainerNew>
+									<span>Nova</span>
+								</ContainerNew>
 								<div>
-									<Image src={LogoEnterprice} alt='Imagem' />
+									<Button>Ver vaga</Button>
 								</div>
-								<div>
-									<span>{vaga.empresa}</span>
-									<h3>{vaga.titulo}</h3>
-									<span>R${vaga.remuneracao},00</span>
-								</div>
-							</ContainerInfo>
-							<ContainerNew>
-								<span>Nova</span>
-							</ContainerNew>
-							<div>
-								<Button>Ver vaga</Button>
-							</div>
-						</Modal>
-					</ContainerVagancy>
-				))}
+							</Modal>
+						</ContainerVagancy>
+					))
+				)}
 			</ContainerVaga>
-			{/* <ContainerVagancy>
-				<Modal>
-					<ContainerInfo>
-						<div>
-							<Image src={LogoEnterprice} alt='Imagem' />
-						</div>
-						<div>
-							<span>Empresa</span>
-							<h3>Titulo da vaga</h3>
-							<span>R$2.000,00</span>
-						</div>
-					</ContainerInfo>
-					<ContainerNew>
-						<span>Nova</span>
-					</ContainerNew>
-					<div>
-						<Button>Ver vaga</Button>
-					</div>
-				</Modal>
-			</ContainerVagancy> */}
 		</Container>
 	);
 }
