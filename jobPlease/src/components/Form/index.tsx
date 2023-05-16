@@ -13,12 +13,12 @@ import {
 import { api } from '../../utils/api';
 import { VagaProps } from '../../types/vaga';
 
+import InputMask from 'react-input-mask';
+
 import { useState } from 'react';
 import { render } from 'react-dom';
 
 export function Form() {
-	const id = Math.random() * 1000;
-	const destaque = true;
 	const [titulo, setTitulo] = useState('');
 	const [senioridade, setSenioridade] = useState('Estagiário');
 	const [empresa, setEmpresa] = useState('');
@@ -33,7 +33,6 @@ export function Form() {
 	const [link, setLink] = useState('');
 
 	const vaga: VagaProps = {
-		id,
 		titulo: titulo,
 		senioridade: senioridade,
 		empresa: empresa,
@@ -46,7 +45,6 @@ export function Form() {
 		diferencial: diferencial,
 		beneficios: beneficios,
 		link: link,
-		destaque,
 	};
 
 	function handleCreateNewVaga() {
@@ -144,12 +142,22 @@ export function Form() {
 				<Label className='required' htmlFor='salario'>
 					Salário oferecido
 				</Label>
-				<Input
+				<InputMask
+					style={{
+						width: '100%',
+						padding: '0.3rem 4px',
+						borderColor: 'rgba(0, 0, 0, 0.2)',
+						borderRadius: '4px',
+						backgroundColor: '#f8f8ff',
+						textAlign: 'right',
+					}}
 					value={remuneracao}
 					onChange={e => setRemuneracao(e.target.value)}
 					placeholder='Digite o salário da vaga'
 					type='text'
 					id='salario'
+					maskChar=''
+					mask='99,999.99'
 				/>
 			</ContainerInput>
 			<ContainerInput>

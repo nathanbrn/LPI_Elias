@@ -12,5 +12,6 @@ CREATE TABLE "vagas" (
     "requisitos" TEXT NOT NULL,
     "diferencial" TEXT NOT NULL,
     "beneficios" TEXT NOT NULL,
-    "destaque" BOOLEAN NOT NULL DEFAULT true
+    "link" TEXT NOT NULL,
+    "destaque" BOOLEAN NOT NULL
 );

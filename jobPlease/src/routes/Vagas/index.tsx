@@ -27,18 +27,26 @@ import ReactLoading from 'react-loading';
 import { render } from 'react-dom';
 
 export function Vagas() {
-	const [vaga, setVaga] = useState<number>();
+	// const [idFirst, setIdFirst] = useState<any>();
 	const [vagasApi, setVagasApi] = useState([]);
+	const [vaga, setVaga] = useState<string>();
 	const [isLoading, setIsLoading] = useState(true);
+
+	// function handleFirstId() {
+	// 	const vagas = [...vagasApi];
+	// 	const vagaId = vagas.filter((v: VagaProps, index) => {
+	// 		return index === 0;
+	// 	});
+	// 	const id = vagaId.map(({ id }) => id);
+	// 	setIdFirst(id);
+	// }
 
 	useEffect(() => {
 		api
 			.get('/')
 			.then(({ data }) => {
-				setTimeout(() => {
-					setVagasApi(data);
-					setIsLoading(false);
-				}, 3000);
+				setVagasApi(data);
+				setIsLoading(false);
 			})
 			.catch(err => {
 				render(
@@ -48,6 +56,11 @@ export function Vagas() {
 				console.log(err);
 			});
 	}, []);
+	
+	// useEffect(() => {
+	// 	handleFirstId();
+	// }, []);
+	
 
 	return (
 		<>
@@ -71,7 +84,8 @@ export function Vagas() {
 					justifyContent: 'center',
 					alignItems: 'center',
 					backgroundColor: '#FFF',
-				}}>
+				}}
+			>
 				{isLoading ? (
 					<ReactLoading type='bubbles' width='10%' color='#f0e68c' />
 				) : vagasApi.length > 0 ? (
@@ -93,7 +107,8 @@ export function Vagas() {
 										cursor: 'pointer',
 
 										backgroundColor: '#F0E68C',
-									}}>
+									}}
+								>
 									<ContainerHeader>
 										<div>
 											<img width={50} height={50} src={LogoEnterprice} alt='' />
@@ -101,7 +116,8 @@ export function Vagas() {
 										<div
 											style={{
 												textAlign: 'left',
-											}}>
+											}}
+										>
 											<h2>{vaga.titulo}</h2>
 											<p>{vaga.empresa}</p>
 											<p>{vaga.location}</p>
@@ -124,20 +140,23 @@ export function Vagas() {
 										<details
 											style={{
 												backgroundColor: '#F0E68C',
-											}}>
+											}}
+										>
 											<summary
 												style={{
 													backgroundColor: 'rgba(0, 0, 0, 0.1)',
 													padding: '4px',
 													borderRadius: '4px',
 													color: '#FFF',
-												}}>
+												}}
+											>
 												Ver mais
 											</summary>
 											<strong
 												style={{
 													backgroundColor: '#F0E68C',
-												}}>
+												}}
+											>
 												Descrição:
 											</strong>
 											<p
@@ -145,13 +164,15 @@ export function Vagas() {
 													textAlign: 'left',
 													marginBottom: '8px',
 													backgroundColor: '#F0E68C',
-												}}>
+												}}
+											>
 												{vaga.description}
 											</p>
 											<strong
 												style={{
 													backgroundColor: '#F0E68C',
-												}}>
+												}}
+											>
 												Requisitos:
 											</strong>
 											<p
@@ -159,7 +180,8 @@ export function Vagas() {
 													textAlign: 'left',
 													marginBottom: '8px',
 													backgroundColor: '#F0E68C',
-												}}>
+												}}
+											>
 												{vaga.requisitos}
 											</p>
 											<a
@@ -170,7 +192,8 @@ export function Vagas() {
 													borderRadius: '8px',
 												}}
 												target='_blank'
-												href={vaga.link}>
+												href={vaga.link}
+											>
 												Candidatar-se
 											</a>
 										</details>
@@ -190,7 +213,8 @@ export function Vagas() {
 											display: 'flex',
 											flexDirection: 'column',
 											gap: '18px',
-										}}>
+										}}
+									>
 										<ContainerTitleVaga>
 											<h2>{vaga.titulo}</h2>
 											<div>

@@ -52,7 +52,7 @@ export function Footer({ isLoading, vagasApi }: FooterProps) {
 									<span>Nova</span>
 								</ContainerNew>
 								<div>
-									<Button onClick={() => navigate('/vagas')}>Ver vagas</Button>
+									<Button onClick={() => navigate('#')}>Ver vaga</Button>
 								</div>
 							</Modal>
 						</ContainerVagancy>

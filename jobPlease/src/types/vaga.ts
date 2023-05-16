@@ -1,5 +1,5 @@
 export interface VagaProps {
-	id?: number;
+	id?: string;
 
 	titulo: string;
 	senioridade: string;
