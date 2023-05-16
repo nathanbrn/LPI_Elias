@@ -39,8 +39,12 @@
 								if (document.querySelector('img') !== null)
 									document.querySelector('img').remove();
 
-								document.querySelector('.col-md-10').innerHTML =
-									'Erro ao carregar a página';
+								document.querySelector(
+									'.col-md-10'
+								).innerHTML = `<div>Erro ao carregar a página</div>
+									
+									<div>Status: ${ajax.status}</div>
+									`;
 
 								console.log(ajax.status);
 							}
