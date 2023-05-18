@@ -16,16 +16,22 @@ import emptyList from '../../assets/emptyList.png';
 import LogoEnterprice from '../../assets/LogoEnterprice.jpg';
 
 import { VagaProps } from '../../types/vaga';
-import { useNavigate } from 'react-router-dom';
 
 interface FooterProps {
 	isLoading: boolean;
 	vagasApi: VagaProps[];
+	idVaga: any;
+	setIdVaga: (id: any) => void;
+	isSelectedVaga: boolean;
+	setIsSelectedVaga: (b: boolean) => void;
 }
 
-export function Footer({ isLoading, vagasApi }: FooterProps) {
-	const navigate = useNavigate();
-
+export function Footer({
+	isLoading,
+	vagasApi,
+	setIdVaga,
+	setIsSelectedVaga,
+}: FooterProps) {
 	return (
 		<Container>
 			<Title>Veja nossas vagas em destaque</Title>
@@ -45,14 +51,20 @@ export function Footer({ isLoading, vagasApi }: FooterProps) {
 									<div>
 										<span>{vaga.empresa}</span>
 										<h3>{vaga.titulo}</h3>
-										<span>R$ {vaga.remuneracao}</span>
+										<span>{vaga.remuneracao}</span>
 									</div>
 								</ContainerInfo>
 								<ContainerNew>
 									<span>Nova</span>
 								</ContainerNew>
 								<div>
-									<Button onClick={() => navigate('#')}>Ver vaga</Button>
+									<Button
+										onClick={() => {
+											setIdVaga(vaga.id);
+											setIsSelectedVaga(true);
+										}}>
+										Ver vaga
+									</Button>
 								</div>
 							</Modal>
 						</ContainerVagancy>

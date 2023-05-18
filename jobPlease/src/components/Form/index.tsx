@@ -13,8 +13,6 @@ import {
 import { api } from '../../utils/api';
 import { VagaProps } from '../../types/vaga';
 
-import InputMask from 'react-input-mask';
-
 import { useState } from 'react';
 import { render } from 'react-dom';
 
@@ -56,6 +54,63 @@ export function Form() {
 			.catch(err => {
 				console.log(err);
 			});
+	}
+
+	function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+		const { key } = event;
+		const { value } = event.target as HTMLInputElement;
+
+		// Verificar se a tecla pressionada é um número ou uma tecla de controle (backspace, delete, setas)
+		if (!isNumberKey(key) && !isControlKey(key)) {
+			event.preventDefault();
+			return;
+		}
+
+		// Obter apenas os números do valor atual
+		const numericValue = getNumericValue(value);
+
+		// Converter o valor numérico para uma string formatada com a máscara
+		const formattedValue = formatCurrency(numericValue);
+
+		// Atualizar o estado com o valor formatado
+		setRemuneracao(formattedValue);
+	}
+
+	// Verificar se a tecla pressionada é um número
+	function isNumberKey(key: string) {
+		return /^[0-9]$/.test(key);
+	}
+
+	// Verificar se a tecla pressionada é uma tecla de controle (backspace, delete, setas)
+	function isControlKey(key: string) {
+		return /^(Backspace|Delete|ArrowLeft|ArrowRight)$/.test(key);
+	}
+
+	// Obter apenas os números do valor atual
+	function getNumericValue(value: string) {
+		return value.replace(/[^\d]/g, '');
+	}
+
+	// Converter o valor numérico para uma string formatada com a máscara
+	function formatCurrency(value: string) {
+		const currencySymbol = 'R$';
+
+		const parts = value.split('');
+		const integerPart = parts.slice(0, -1).join('');
+		const decimalPart = parts.slice(-1).join('');
+
+		let formattedValue = '';
+
+		for (let i = integerPart.length - 1, j = 0; i >= 0; i--, j++) {
+			if (j > 0 && j % 3 === 0) {
+				formattedValue = '.' + formattedValue;
+			}
+			formattedValue = integerPart[i] + formattedValue;
+		}
+
+		formattedValue = currencySymbol + formattedValue + ',' + decimalPart;
+
+		return formattedValue;
 	}
 
 	return (
@@ -139,27 +194,24 @@ export function Form() {
 				/>
 			</ContainerInput>
 			<ContainerInput>
-				<Label className='required' htmlFor='salario'>
-					Salário oferecido
-				</Label>
-				<InputMask
+				<Label htmlFor='salario'>Salário oferecido</Label>
+				<Input
 					style={{
 						width: '100%',
 						padding: '0.3rem 4px',
 						borderColor: 'rgba(0, 0, 0, 0.2)',
 						borderRadius: '4px',
 						backgroundColor: '#f8f8ff',
-						textAlign: 'right',
 					}}
 					value={remuneracao}
 					onChange={e => setRemuneracao(e.target.value)}
 					placeholder='Digite o salário da vaga'
 					type='text'
 					id='salario'
-					maskChar=''
-					mask='99,999.99'
+					onKeyDown={handleKeyDown}
 				/>
 			</ContainerInput>
+
 			<ContainerInput>
 				<Label htmlFor='horas'>Horário</Label>
 				<Input
@@ -193,9 +245,7 @@ export function Form() {
 				/>
 			</ContainerInput>
 			<ContainerInput>
-				<Label className='required' htmlFor='beneficios'>
-					Beneficios
-				</Label>
+				<Label htmlFor='beneficios'>Beneficios</Label>
 				<Input
 					value={beneficios}
 					onChange={e => setBeneficios(e.target.value)}
@@ -224,8 +274,6 @@ export function Form() {
 							senioridade === '' ||
 							link === '' ||
 							requisitos === '' ||
-							beneficios === '' ||
-							remuneracao === '' ||
 							location === '' ||
 							empresa === ''
 						) {
