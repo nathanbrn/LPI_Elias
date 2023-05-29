@@ -38,9 +38,13 @@ router.post('/', async (req, res) => {
 	} = req.body;
 
 	let destaque = false;
-	const remuneracaoRegex = /^\d{1,3}(?:\.\d{3})*(,\d{2})?$/;
 
-	if (remuneracaoRegex.test(remuneracao)) {
+	if (
+		remuneracao !== '' &&
+		description !== '' &&
+		hour !== '' &&
+		beneficios !== ''
+	) {
 		destaque = true;
 	}
 
