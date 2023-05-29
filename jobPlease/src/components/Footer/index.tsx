@@ -52,7 +52,9 @@ export function Footer({ isLoading, vagasApi }: FooterProps) {
 									<span>Nova</span>
 								</ContainerNew>
 								<div>
-									<Button onClick={() => navigate('#')}>Ver vaga</Button>
+									<Button onClick={() => navigate('#')}>
+										<s style={{ backgroundColor: '#b22222', color: '#FFF' }}>Ver vaga</s>
+									</Button>
 								</div>
 							</Modal>
 						</ContainerVagancy>

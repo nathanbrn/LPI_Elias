@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+
+    
+  <title>Listagem de Usuários aleatórios</title>
+  <style>
+    .user-card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .user-card h3 {
+      margin: 0;
+    }
+
+    .user-card p {
+      margin: 5px 0;
+    }
+
+    .btnCreated {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .btnCreated:hover {
+      background-color: #ccc;
+    }
+
+    form {
+      display: none; /* Esconde o formulário inicialmente */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 12px;
+      gap: 8px;
+      border: 1px solid #111;
+    }
+
+    input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #created {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    #created:hover {
+      background-color: #ccc;
+    }
+  </style>
+
+  </head>
+  <body>
+    
+  <div class="user-container">
+
+  </div>
+
+  <button class="btnCreated" onclick="openForm()">Criar Usuário</button>
+
+  <form id="userForm" onkeydown="closeForm(event)">
+    <h2>Criar Usuário</h2>
+    <input type="text" id="name" name="name" placeholder="Nome">
+    <input type="text" id="age" name="age" placeholder="Idade">
+    <input type="email" id="email" name="email" placeholder="Email">
+    <input type="text" id="city" name="city" placeholder="Cidade">
+    <input type="text" id="country" name="country" placeholder="País">
+    <input type="date" id="dateStart" name="dateStart">
+    <input type="text" id="phone" name="phone" placeholder="Telefone">
+
+    <button id="created">Criar</button>
+  </form>
+
+  <script>
+    function openForm() {
+      const form = document.getElementById('userForm');
+      form.style.display = 'block';
+    }
+
+    function closeForm(event) {
+      if (event.key === 'Escape') {
+        const form = document.getElementById('userForm');
+        form.style.display = 'none';
+      }
+    }
+  </script>
+
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

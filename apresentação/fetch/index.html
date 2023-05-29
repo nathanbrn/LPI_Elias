@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Listagem de Usuários aleatórios</title>
+  <style>
+    .user-card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .user-card h3 {
+      margin: 0;
+    }
+
+    .user-card p {
+      margin: 5px 0;
+    }
+
+    .btnCreated {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .btnCreated:hover {
+      background-color: #ccc;
+    }
+
+    form {
+      display: none; /* Esconde o formulário inicialmente */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 12px;
+      gap: 8px;
+      border: 1px solid #111;
+    }
+
+    input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #created {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    #created:hover {
+      background-color: #ccc;
+    }
+  </style>
+
+  <script>
+    async function fetchUser() {
+      try {
+        const request = await fetch('http://localhost:3000/users');
+        const users = await request.json();
+
+        const user = users
+          .map(
+            (user, index) => `
+              <div class="user-card">
+                <h3>Usuário ${index + 1}</h3>
+                <p>Nome: ${user.name}</p>
+                <p>Idade: ${user.age}</p>
+                <p>Email: ${user.email}</p>
+                <p>Cidade: ${user.city}</p>
+                <p>País: ${user.country}</p>
+                <p>Telefone: ${user.phone}</p>
+                <p>Data de Nascimento: ${user.dateStart}</p>
+              </div>
+            `
+          )
+          .join('');
+
+        document.querySelector('.user-container').innerHTML += user;
+      } catch (err) {
+        document.querySelector(
+          '.user-container'
+        ).innerHTML = `<h4>Erro ao carregar os usuários</h4>`;
+      }
+    }
+
+  fetchUser();
+  </script>
+</head>
+<body>
+  <div class="user-container">
+
+  </div>
+
+  <button class="btnCreated" onclick="openForm()">Criar Usuário</button>
+
+  <form id="userForm" onkeydown="closeForm(event)">
+    <h2>Criar Usuário</h2>
+    <input type="text" id="name" name="name" placeholder="Nome">
+    <input type="text" id="age" name="age" placeholder="Idade">
+    <input type="email" id="email" name="email" placeholder="Email">
+    <input type="text" id="city" name="city" placeholder="Cidade">
+    <input type="text" id="country" name="country" placeholder="País">
+    <input type="date" id="dateStart" name="dateStart">
+    <input type="text" id="phone" name="phone" placeholder="Telefone">
+
+    <button id="created">Criar</button>
+  </form>
+
+  <script>
+    function openForm() {
+      const form = document.getElementById('userForm');
+      form.style.display = 'block';
+    }
+
+    function closeForm(event) {
+      if (event.key === 'Escape') {
+        const form = document.getElementById('userForm');
+        form.style.display = 'none';
+      }
+    }
+  </script>
+
+  <script>
+    const created = document.getElementById('created');
+
+    const name = document.getElementById('name');
+    const age = document.getElementById('age');
+    const email = document.getElementById('email');
+    const city = document.getElementById('city');
+    const country = document.getElementById('country');
+    const dateStart = document.getElementById('dateStart');
+    const phone = document.getElementById('phone');
+
+    
+    async function createdUser() {
+      const user = {
+        name: name.value,
+        age: age.value,
+        email: email.value,
+        city: city.value,
+        country: country.value,
+        dateStart: dateStart.value,
+        phone: phone.value,
+      }
+      const userJson = JSON.stringify(user);
+
+      try {
+        await fetch('http://localhost:3000/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: userJson,
+        });;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    created.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      createdUser();
+
+      window.location.reload();
+    })
+  </script>
+</body>
+</html>
