@@ -31,23 +31,23 @@ export function Form() {
 	const [link, setLink] = useState('');
 
 	const vaga: VagaProps = {
-		titulo: titulo,
-		senioridade: senioridade,
-		empresa: empresa,
+		title: titulo,
+		experience: senioridade,
+		enterprice: empresa,
 		type: type,
 		hour: hour,
-		remuneracao: remuneracao,
+		salary: remuneracao,
 		location: location,
 		description: description,
-		requisitos: requisitos,
-		diferencial: diferencial,
-		beneficios: beneficios,
-		link: link,
+		requirements: requisitos,
+		differentials: diferencial,
+		benefits: beneficios,
+		url: link,
 	};
 
-	function handleCreateNewVaga() {
-		api
-			.post('/', vaga)
+	async function handleCreateNewVaga() {
+		await api
+			.post('/jobs', vaga)
 			.then(response => {
 				console.log(response.data);
 			})

@@ -1,12 +1,4 @@
-import {
-	Button,
-	Container,
-	ContainerInput,
-	ContainerText,
-	Input,
-	Text,
-	Title,
-} from './styles';
+import { Container, ContainerText, Text, Title } from './styles';
 
 export function Main() {
 	return (
@@ -18,15 +10,6 @@ export function Main() {
 					home-office
 				</Text>
 			</ContainerText>
-			{/* <ContainerInput>
-				<Input
-					placeholder='Digite a vaga que está buscando'
-					type='text'
-					name='search'
-					id='search'
-				/>
-				<Button>Procurar</Button>
-			</ContainerInput> */}
 		</Container>
 	);
 }
